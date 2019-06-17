@@ -2,12 +2,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import CommentBox from 'components/CommentBox';
+import Root from 'Root';
 
 // NOTE: would typically use shallow render instead of full DOM.
 
 let wrapped;
 beforeEach(() => {
-    wrapped = mount(<CommentBox />);
+    wrapped = mount(<Root><CommentBox /></Root>);
 });
 
 /* ref : https://airbnb.io/enzyme/docs/api/mount.html
@@ -22,27 +23,24 @@ it('has a text-area and button', () => {
     expect(wrapped.find('button').length).toEqual(1);
 });
 
-it('has a text-area that users can interact with', () => {
-    wrapped.find('textarea')
-        .simulate('change', { target: { value: 'new comment'} });
-    
-    //rerender the component
-    wrapped.update();
-    expect(wrapped.find('textarea').prop('value'))
-        .toEqual('new comment');
-});
-
-it('clears the text-area on form submit', () => {
-    wrapped.setState({ comment : 'old comment'});
-    /* alternative to setState - reuse code from above. *//*
+describe('text area', () => {
+    beforeEach(() => {
         wrapped.find('textarea')
             .simulate('change', { target: { value: 'new comment'} });
+        //rerender the component
         wrapped.update();
-    */
-    wrapped.find('form')
-        .simulate('submit');
-    wrapped.update();
-    expect(wrapped.find('textarea').prop('value'))
-        .toEqual('');
-});
+    });
 
+    it('has a text-area that users can interact with', () => {
+        expect(wrapped.find('textarea').prop('value'))
+            .toEqual('new comment');
+    });
+    
+    it('clears the text-area on form submit', () => {
+        wrapped.find('form')
+            .simulate('submit');
+        wrapped.update();
+        expect(wrapped.find('textarea').prop('value'))
+            .toEqual('');
+    });
+});
