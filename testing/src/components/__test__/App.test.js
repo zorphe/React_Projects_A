@@ -1,18 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 
 import App from '../App';
+import CommentBox from '../CommentBox';
+import CommentList from '../CommentList';
+
+// Enzyme - check for Component - https://airbnb.io/enzyme/docs/api/ShallowWrapper/find.html
 
 // basic template: it ( testDescription, testFunction )
-// document created by jsDOM
 it ('shows a comment box', () => {
-    // set-up
-    const div = document.createElement('div');
-    ReactDOM.render(<App/>, div);
+    const wrapped = shallow(<App />);
 
-    // inspect div element to confirm if the CommentBox exists
-    expect(div.innerHTML).toContain('Box');
+    expect(wrapped.find(CommentBox).length)
+        .toEqual(1);
+})
 
-    // clean-up
-    ReactDOM.unmountComponentAtNode(div);
+it ('shows a comment list', () => {
+    const wrapped = shallow(<App />);
+
+    expect(wrapped.find(CommentList).length)
+        .toEqual(1);
 })
