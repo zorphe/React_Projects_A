@@ -2,8 +2,6 @@ export default ({ dispatch }) => (next) => async (action) => {
     // Check action.payload for a Promise.
     // If found, wait til resolved.
     // Else send it to the next middleware
-    debugger;
-
     if (!action.payload || !action.payload.then) {
         return next(action);
     }
