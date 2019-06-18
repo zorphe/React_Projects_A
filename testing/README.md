@@ -1,3 +1,15 @@
+[Unit and Integration] testing in React/Redux using Jest and Enzyme;
+
+Description:
+App creates and displays a list of comments.
+User can also retrieve additional "stock comments" from jsonplaceholder.typicode.com;
+
+Utilizes:
+ - axios (for requests to jsonPlaceholder API)
+ - reduxPromise, moxios
+ 
+ ===================================================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
