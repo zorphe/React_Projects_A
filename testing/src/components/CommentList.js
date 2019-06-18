@@ -14,6 +14,7 @@ class CommentList extends React.Component{
     render(){
         return (
             <div>
+                <h4> List: </h4>
                 <ul>
                     { this.renderComments() }
                 </ul>
@@ -22,7 +23,7 @@ class CommentList extends React.Component{
     }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = (state) => {
     return { comments : state.comments };
 }
 
