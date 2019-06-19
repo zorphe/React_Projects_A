@@ -9,7 +9,7 @@ function tokenForUser(user) {
 
 exports.signin = (req, res, next) => {
     // provide the user a token
-    Response.send({ token: tokenForUser(req.user) });
+    res.send({ token: tokenForUser(req.user) });
 }
 
 exports.signup = (req, res, next) => {
